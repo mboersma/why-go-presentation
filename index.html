@@ -53,11 +53,10 @@
 					<pre><code data-trim contenteditable>
 package main
 
-import (
-	"fmt"
-	"os"
-	"strings"
-)
+import "fmt"
+import "os"
+import "strings"
+
 func main() {
 	args := os.Args[1:]
 	if len(args) == 0 {
@@ -73,45 +72,59 @@ func main() {
 				<section>
 					<h2>Why Did Google Need Go?</h2>
 					<p>
-						C++, and Java still rule systems programming, but they <strong>slow us down</strong>.
-						Python <strong>doesn't scale</strong> with multicore CPUs.
+						C++ and Java still rule systems programming, but they <em>slow us down</em>.
+						Python <em>doesn't scale</em> with multicore CPUs.
 					</p>
 					<p>
-						Let's try again with a <em>new</em>, <em>concurrent</em>, <em>garbage-collected</em>
-						language that <em>compiles quickly</em>.
+						Let's try again with a <strong>new</strong>, <strong>concurrent</strong>,
+						<strong>garbage-collected</strong> language that <strong>compiles quickly</strong>.
 					</p>
+				</section>
+
+				<section>
+					<h2>More Code</h2>
+					<pre><code data-trim contenteditable>
+package main
+
+import "fmt"
+import "time"
+
+func worker(done chan bool) {
+    time.Sleep(time.Second)
+    fmt.Println("done")
+    done <- true
+}
+
+func main() {
+    done := make(chan bool, 1)
+    go worker(done)
+    <-done
+}
+					</code></pre>
 				</section>
 
 				<section>
 					<h2>Why Do We Use Go?</h2>
 					<p>
-						Blah blah blah.
+						<ul>
+							<li>Share cloud ecosystem code</li>
+							<li>gofmt</li>
+							<li>Pragmatic, no magic</li>
+							<li>Fast compiles and fast binaries</li>
+							<li>Excellent toolbox and standard library</li>
+						</ul>
 					</p>
 				</section>
 
 				<section>
 					<h2>Why Should You Use Go?</h2>
 					<p>
-						Easy to learn, <em>not</em> a lifetime to master.
-						Blah blah blah.
-					</p>
-				</section>
-
-				<section id="themes">
-					<h2>Themes</h2>
-					<p>
-						reveal.js comes with a few themes built in: <br>
-						<!-- Hacks to swap themes after the page has loaded. Not flexible and only intended for the reveal.js demo deck. -->
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','revealjs/css/theme/black.css'); return false;">Black (default)</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','revealjs/css/theme/white.css'); return false;">White</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','revealjs/css/theme/league.css'); return false;">League</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','revealjs/css/theme/sky.css'); return false;">Sky</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','revealjs/css/theme/beige.css'); return false;">Beige</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','revealjs/css/theme/simple.css'); return false;">Simple</a> <br>
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','revealjs/css/theme/serif.css'); return false;">Serif</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','revealjs/css/theme/night.css'); return false;">Night</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','revealjs/css/theme/moon.css'); return false;">Moon</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','revealjs/css/theme/solarized.css'); return false;">Solarized</a>
+						<ul>
+							<li>Easy to learn, <em>not</em> a lifetime to master</li>
+							<li>Powerful concurrency primitives</li>
+							<li>Scripting "feel" but compiled performance</li>
+							<li>Stable target--there is no "Go 2"</li>
+						</ul>
 					</p>
 				</section>
 
